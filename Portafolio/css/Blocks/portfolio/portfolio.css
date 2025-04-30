@@ -1,0 +1,148 @@
+.portfolio {
+    padding: 4rem 0;
+    background-color: #f9f9f9;
+}
+
+.portfolio__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.portfolio__title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.portfolio__title::before,
+.portfolio__title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    background-color: #ddd;
+    width: 25%;
+}
+
+.portfolio__title::before {
+    left: 0;
+}
+
+.portfolio__title::after {
+    right: 0;
+}
+
+.portfolio__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+/* Portfolio item como un bloque independiente */
+.portfolio__item {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+.portfolio-item.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-item--featured {
+    grid-column: span 2;
+    background-color: #f5f5f5;
+    border-left: 3px solid #222;
+}
+
+.portfolio__item-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.portfolio__item-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+
+.portfolio-item__icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item__content {
+    padding: 1.5rem;
+}
+
+.portfolio-item__date {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-item__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-item__description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+/* Nuevos elementos para el portfolio-item */
+.portfolio-item__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #222;
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.portfolio-item__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.portfolio-item__tag {
+    background-color: #f0f0f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    color: #555;
+}

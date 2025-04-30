@@ -1,0 +1,83 @@
+.header {
+    background-color: #222;
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header__logo {
+    /* Estilos para el contenedor del logo */
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.header__logo:hover {
+    transform: scale(1.05);
+}
+
+.header__logo-text {
+    font-weight: 500;
+    letter-spacing: 1px;
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.header__nav {
+    /* Estilos para la navegación */
+    display: flex;
+    align-items: center;
+}
+
+.header__nav-list {
+    display: flex;
+    gap: 2rem;
+}
+
+.header__nav-item {
+    /* Estilos para cada elemento de la lista */
+    position: relative;
+}
+
+.header__nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #fff;
+    transition: width 0.3s ease;
+}
+
+.header__nav-item:hover::after {
+    width: 100%;
+}
+
+.header__nav-link {
+    transition: color 0.3s ease;
+}
+
+.header__nav-link:hover {
+    color: #aaa;
+}
+
+.header__nav-link--active {
+    /* Estilo para el enlace activo */
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    font-weight: 500;
+    padding-bottom: 3px;
+}
