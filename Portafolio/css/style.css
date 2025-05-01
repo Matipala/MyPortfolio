@@ -3,6 +3,7 @@
 @import 'blocks/header/header.css';
 @import 'blocks/hero/hero.css';
 @import 'blocks/portfolio/portfolio.css';
+@import 'blocks/skills/skills.css';
 @import 'blocks/footer/footer.css';
 @media (max-width: 768px) {
     .hero__container {
