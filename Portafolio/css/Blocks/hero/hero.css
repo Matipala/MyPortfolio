@@ -56,8 +56,8 @@
     padding: 50px 0;
     background-color: #f4f4f4;
     text-align: center;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .hero-sobre-mi__container {
@@ -75,11 +75,8 @@
 
 .hero-sobre-mi__image {
     flex: 0 0 auto;
-    /* La imagen no se encogerá ni crecerá, mantiene su tamaño */
     width: 600px;
-    /* Tamaño fijo para la imagen */
     height: auto;
-    /* La altura se ajusta automáticamente para mantener la proporción */
 }
 
 .hero-sobre-mi__img {
@@ -90,10 +87,8 @@
 
 .hero-sobre-mi__text {
     flex-grow: 1;
-    /* Hace que el texto ocupe el espacio restante */
     text-align: left;
     max-width: 600px;
-    /* Máximo ancho para que el texto no se estire demasiado */
 }
 
 .hero-sobre-mi__title {
@@ -129,3 +124,48 @@
         margin-right: 10px;
     }
 }
+
+.hero-contact {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.hero-contact__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.hero-contact__title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero-contact__description {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero-contact__socials {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  
+  .hero-contact__icon img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+  }
+  
+  .hero-contact__icon img:hover {
+    transform: scale(1.2);
+  }
+  

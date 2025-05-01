@@ -17,7 +17,6 @@
 }
 
 .header__logo {
-    /* Estilos para el contenedor del logo */
     display: flex;
     align-items: center;
     transition: transform 0.3s ease;
@@ -36,7 +35,6 @@
 }
 
 .header__nav {
-    /* Estilos para la navegación */
     display: flex;
     align-items: center;
 }
@@ -47,7 +45,6 @@
 }
 
 .header__nav-item {
-    /* Estilos para cada elemento de la lista */
     position: relative;
 }
 
@@ -75,7 +72,6 @@
 }
 
 .header__nav-link--active {
-    /* Estilo para el enlace activo */
     color: #fff;
     border-bottom: 2px solid #fff;
     font-weight: 500;
