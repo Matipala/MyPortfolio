@@ -3,6 +3,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    transition: color 0.2s ease;
 }
 
 .like-button.liked {
