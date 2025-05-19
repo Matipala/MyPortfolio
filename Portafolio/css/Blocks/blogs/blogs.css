@@ -27,6 +27,15 @@
     width: 25%;
 }
 
+.blogs__title::before {
+    left: 0;
+}
+
+.blogs__title::after {
+    right: 0;
+}
+
+
 .blogs__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
