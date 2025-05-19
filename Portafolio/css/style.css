@@ -5,6 +5,7 @@
 @import 'blocks/portfolio/portfolio.css';
 @import 'blocks/skills/skills.css';
 @import 'blocks/footer/footer.css';
+@import 'blocks/blogs/blogs.css';
 @media (max-width: 768px) {
     .hero__container {
         flex-direction: column;
