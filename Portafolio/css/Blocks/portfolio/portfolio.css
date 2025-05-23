@@ -70,13 +70,13 @@
     border-left: 3px solid #222;
 }
 
-.portfolio__item-image {
+.portfolio-item__image {
     position: relative;
     height: 200px;
     overflow: hidden;
 }
 
-.portfolio__item-img {
+.portfolio-item__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -143,4 +143,13 @@
     border-radius: 3px;
     font-size: 0.8rem;
     color: #555;
+}
+
+.portfolio-item__link {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 1rem;
 }

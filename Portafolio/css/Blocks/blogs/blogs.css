@@ -59,13 +59,13 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.blogs__item-image {
+.blogs-item__image {
     position: relative;
     height: 200px;
     overflow: hidden;
 }
 
-.blogs__item-img {
+.blogs-item__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
