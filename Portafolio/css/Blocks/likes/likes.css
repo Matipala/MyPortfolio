@@ -1,5 +1,6 @@
-.like-button {
-    font-size: 1.2rem;
+.like-button,
+save-button {
+    font-size: 1.1rem;
     background: none;
     border: none;
     cursor: pointer;
@@ -8,4 +9,8 @@
 
 .like-button.liked {
     color: red;
+}
+
+.save-button.saved {
+    color: green;
 }

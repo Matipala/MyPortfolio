@@ -92,3 +92,11 @@
     color: #666;
     margin-bottom: 1rem;
 }
+
+.blogs-item__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+}
