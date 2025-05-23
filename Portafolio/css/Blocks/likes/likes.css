@@ -7,10 +7,10 @@ save-button {
     transition: color 0.2s ease;
 }
 
-.like-button.liked {
+.like-button.like {
     color: red;
 }
 
-.save-button.saved {
+.save-button.save {
     color: green;
 }
