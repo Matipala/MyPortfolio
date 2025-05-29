@@ -41,6 +41,22 @@ class ProjectsComponent extends HTMLElement {
     return mockProjects;
   }
 
+  addClickListeners() {
+    const projects = this.getProjects();
+
+    this.shadowRoot.querySelectorAll('.portfolio__item').forEach(item => {
+      item.addEventListener('click', () => {
+        const index = item.getAttribute('data-index');
+        const selectedProject = projects[index];
+
+        const detail = document.createElement('product-detail');
+        detail.product = selectedProject;
+
+        this.shadowRoot.appendChild(detail);
+      });
+    });
+  }
+
   render() {
     const projects = this.getProjects();
 
