@@ -47,64 +47,9 @@
             <h2 class="portfolio__title">ALGUNOS DE MIS ÚLTIMOS TRABAJOS</h2>
 
             <div class="portfolio__grid">
-                <!-- Proyecto 1 -->
-                <article class="portfolio__item">
-                    <div class="portfolio-item__image">
-                        <a href="https://github.com/Matipala/SIS-213-ON.git" target="_blank" rel="noopener noreferrer">
-                            <img src="img/EstaesMorado.png" alt="Proyecto 1" class="portfolio-item__img">
-                    </div>
-                    <div class="portfolio-item__content">
-                        <p class="portfolio-item__date">6 de febrero de 2025</p>
-                        <h3 class="portfolio-item__title"><a href="https://github.com/Matipala/SIS-213-ON.git"
-                                target="_blank" rel="noopener noreferrer">OrderNow</a>
-                        </h3>
-                        <p class="portfolio-item__description">OrderNow es una pagina web que permite a los estudiantes
-                            poder pedir comida a los restaurantes cercanos de la universidad.</p>
-
-                    </div>
-                </article>
-
-                <!-- Proyecto 2 -->
-                <article class="portfolio__item">
-                    <div class="portfolio-item__image">
-                        <a href="https://github.com/Matipala/Postulacion-Docente.git" target="_blank"
-                            rel="noopener noreferrer">
-                            <img src="img/EstaesMorado.png" alt="Proyecto 2" class="portfolio-item__img">
-                    </div>
-                    <div class="portfolio-item__content">
-                        <p class="portfolio-item__date">20 de octubre de 2024</p>
-                        <h3 class="portfolio-item__title"><a href="https://github.com/Matipala/Postulacion-Docente.git"
-                                target="_blank" rel="noopener noreferrer">Postulacion Docente</a>
-                        </h3>
-                        <p class="portfolio-item__description">Postulacion Docente presenta un nuevo método para
-                            postularse a la docencia en la Universidad Católica Boliviana, con el motivo de optimizar el
-                            proceso en términos de tiempo y monetariamente.
-                        </p>
-                    </div>
-                </article>
-
-                <!-- Proyecto 3 -->
-                <article class="portfolio__item">
-                    <div class="portfolio-item__image">
-                        <a href="https://github.com/Matipala/Reconocimiento_Gestos.git" target="_blank"
-                            rel="noopener noreferrer">
-                            <img src="img/EstaesMorado.png" alt="Proyecto 3" class="portfolio-item__img">
-                    </div>
-                    <div class="portfolio-item__content">
-                        <p class="portfolio-item__date">6 de febrero de 2025</p>
-                        <h3 class="portfolio-item__title"><a
-                                href="https://github.com/Matipala/Reconocimiento_Gestos.git" target="_blank"
-                                rel="noopener noreferrer">Proyecto 3</a>
-                        </h3>
-                        <p class="portfolio-item__description">Reconocimiento de Gestos utilizando tecnologías web
-                            modernas. El objetivo es crear una aplicación interactiva que reconozca gestos de la mano a
-                            través de la cámara web del usuario, permitiendo que interactúen con la interfaz de la
-                            aplicación en tiempo real.
-                        </p>
-                    </div>
-                </article>
             </div>
         </div>
+
     </section>
     <section class="blogs" id="blogs">
         <div class="blogs__container">
@@ -174,12 +119,20 @@
                 </article>
     </section>
 
+    <home-component></home-component>
+
+
     <footer class="footer">
         <div class="footer__container">
             <p class="footer__copyright">©2025 Matias Palacios</p>
         </div>
     </footer>
 
+
+
+    <script type="module" src="./components/portfolio-details.js"></script>
+    <script type="module" src="./js/portfolio.js"></script>
+    <script src="./components/home-component.js"></script>
     <script src="./js/script.js"></script>
     <script src="./js/script-route.js"></script>
 </body>
