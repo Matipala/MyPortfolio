@@ -192,14 +192,25 @@ class BlogsSection extends HTMLElement {
     }
 
     class ToggleSaveCommand extends Command {
-      constructor(blogData, updateCallback) {
+      constructor(blogData, blog, blogElement, updateCallback) {
         super();
         this.blogData = blogData;
+        this.blog = blog;
+        this.blogElement = blogElement;
         this.updateCallback = updateCallback;
       }
       execute() {
         this.blogData.saved = !this.blogData.saved;
+        if (this.blogData.saved) {
+          Object.assign(this.blogData, {
+            image: this.blog.image,
+            title: this.blog.title,
+            date: this.blog.date,
+            description: this.blog.description,
+          });
+        }
         this.updateCallback();
+        this.blogElement.dispatchEvent(new CustomEvent('blogs-updated', { bubbles: true, composed: true }));
       }
     }
 
@@ -239,7 +250,7 @@ class BlogsSection extends HTMLElement {
         saveStoredData(storedData);
       });
 
-      const saveCommand = new ToggleSaveCommand(blogData, () => {
+      const saveCommand = new ToggleSaveCommand(blogData, blog, blogElement, () => {
         updateSaveButton();
         storedData[blogId] = blogData;
         saveStoredData(storedData);
@@ -254,7 +265,6 @@ class BlogsSection extends HTMLElement {
           saveMessage.style.display = "none";
         }
       });
-
 
       likeButton.addEventListener("click", () => {
         likeCommand.execute();
