@@ -1,50 +1,50 @@
 class ProjectsComponent extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  getProjects() {
+    const data = localStorage.getItem('projects');
+    if (data) {
+      return JSON.parse(data);
     }
+    const mockProjects = [
+      {
+        title: "OrderNow",
+        description: "Plataforma de pedidos para estudiantes universitarios. Permite a los usuarios ordenar comida desde sus dispositivos móviles dentro del campus.",
+        date: "10 de marzo de 2025",
+        image: "img/EstaesMorado.png",
+        link: "https://github.com/Matipala/OrderNow"
+      },
+      {
+        title: "Detector de Basura",
+        description: "Sistema con IA que detecta cuando un auto bota basura en la calle y captura la placa para aplicar sanciones.",
+        date: "28 de abril de 2025",
+        image: "img/EstaesMorado.png",
+        link: "https://github.com/Matipala/Detector-Basura-Placas"
+      },
+      {
+        title: "Reconocimiento de Gestos",
+        description: "Aplicación web que reconoce gestos con la mano a través de la cámara para interactuar en tiempo real.",
+        date: "6 de febrero de 2025",
+        image: "img/EstaesMorado.png",
+        link: "https://github.com/Matipala/Reconocimiento_Gestos.git"
+      }
+    ];
 
-    connectedCallback() {
-        this.render();
-    }
+    localStorage.setItem('projects', JSON.stringify(mockProjects));
+    return mockProjects;
+  }
 
-    getProjects() {
-        const data = localStorage.getItem('projects');
-        if (data) {
-            return JSON.parse(data);
-        }
-        const mockProjects = [
-            {
-                title: "OrderNow",
-                description: "Plataforma de pedidos para estudiantes universitarios. Permite a los usuarios ordenar comida desde sus dispositivos móviles dentro del campus.",
-                date: "10 de marzo de 2025",
-                image: "img/EstaesMorado.png",
-                link: "https://github.com/Matipala/OrderNow"
-            },
-            {
-                title: "Detector de Basura",
-                description: "Sistema con IA que detecta cuando un auto bota basura en la calle y captura la placa para aplicar sanciones.",
-                date: "28 de abril de 2025",
-                image: "img/EstaesMorado.png",
-                link: "https://github.com/Matipala/Detector-Basura-Placas"
-            },
-            {
-                title: "Reconocimiento de Gestos",
-                description: "Aplicación web que reconoce gestos con la mano a través de la cámara para interactuar en tiempo real.",
-                date: "6 de febrero de 2025",
-                image: "img/EstaesMorado.png",
-                link: "https://github.com/Matipala/Reconocimiento_Gestos.git"
-            }
-        ];
+  render() {
+    const projects = this.getProjects();
 
-        localStorage.setItem('projects', JSON.stringify(mockProjects));
-        return mockProjects;
-    }
-
-    render() {
-        const projects = this.getProjects();
-
-        this.shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = `
       <style>
         .portfolio {
           padding: 3rem 0;
@@ -61,7 +61,6 @@ class ProjectsComponent extends HTMLElement {
           display: flex;
           gap: 2rem;
           flex-wrap: nowrap;
-          overflow-x: auto;
           padding-bottom: 1rem;
         }
 
@@ -144,7 +143,7 @@ class ProjectsComponent extends HTMLElement {
         </div>
       </section>
     `;
-    }
+  }
 }
 
 customElements.define('projects-section', ProjectsComponent);

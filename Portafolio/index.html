@@ -55,71 +55,11 @@
         <div class="blogs__container">
             <h2 class="blogs__title">ALGUNOS DE MIS BLOGS</h2>
             <div class="blogs__grid">
-                <!-- Blog 1 -->
-                <article class="blogs__item" data-id="blog1">
-                    <div class="blogs-item__image">
-                        <img src="img/Blog1.jpeg" alt="Blog 1" class="blogs-item__img">
-                    </div>
-                    <div class="blogs-item__content">
-                        <p class="blogs-item__date">20 de mayo de 2025</p>
-                        <h3 class="blogs-item__title">Aplicando Metodologias Agiles</h3>
-                        <p class="blogs-item__description">Algo que he aprendido en mis clases y proyectos es que
-                            desarrollar software no se trata solo de escribir código, sino de colaborar, planificar y
-                            mejorar constantemente como equipo<a
-                                href="https://www.linkedin.com/posts/matias-palacios0121_desarrolloaergil-scrum-trabajoenequipo-activity-7330286029284773888-jrib?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLMlAcBcYwIG7Vp29NP94xl_Sk-QD9GceI"
-                                target="_blank" rel="noopener noreferrer">
-                                Ver más...</a></p>
-                        <div class="blogs-item__buttons">
-                            <button class="like-button"></button>
-                            <button class="save-button"></button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="blogs__item" data-id="blog2">
-                    <div class="blogs-item__image">
-                        <img src="img/blog2.jpeg" alt="Blog 2" class="blogs-item__img">
-                    </div>
-                    <div class="blogs-item__content">
-                        <p class="blogs-item__date">16 de mayo de 2025</p>
-                        <h3 class="blogs-item__title">Box Model en CSS</h3>
-                        <p class="blogs-item__description">Recientemente aprendí sobre el Box Model en una clase de
-                            aplicaciones web, y me sorprendió lo importante que es para lograr diseños bien
-                            estructurados. El box model define cómo se comportan los elementos HTML: desde el contenido,
-                            padding, border<a
-                                href="https://www.linkedin.com/posts/matias-palacios0121_desarrolloweb-css-boxmodel-activity-7327765768471756800-g6aQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLMlAcBcYwIG7Vp29NP94xl_Sk-QD9GceI"
-                                target="_blank" rel="noopener noreferrer">
-                                Ver más...</a></p>
-                        <div class="blogs-item__buttons">
-                            <button class="like-button"></button>
-                            <button class="save-button"></button>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="blogs__item" data-id="blog3">
-                    <div class="blogs-item__image">
-                        <img src="img/blog3.jpeg" alt="Blog 3" class="blogs-item__img">
-                    </div>
-                    <div class="blogs-item__content">
-                        <p class="blogs-item__date">12 de diciembre de 2024</p>
-                        <h3 class="blogs-item__title">Presentacion Proyecto</h3>
-                        <p class="blogs-item__description">Presenté mi proyecto "Comunicación asistida por IA para
-                            personas con discapacidades auditivas", buscando aportar un granito de arena a la inclusión
-                            a través de la tecnología.
-                            Gracias a nuestro ingeniero Edgar Jaldin<a
-                                href="https://www.linkedin.com/posts/matias-palacios0121_desarrolloaergil-scrum-trabajoenequipo-activity-7330286029284773888-jrib?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFLMlAcBcYwIG7Vp29NP94xl_Sk-QD9GceI"
-                                target="_blank" rel="noopener noreferrer">
-                                Ver más...</a></p>
-                        <div class="blogs-item__buttons">
-                            <button class="like-button"></button>
-                            <button class="save-button"></button>
-                        </div>
-                    </div>
-                </article>
+                <blogs-section></blogs-section>
+            </div>
+        </div>
     </section>
 
-    <home-component></home-component>
 
 
     <footer class="footer">
@@ -128,7 +68,7 @@
         </div>
     </footer>
 
-
+    <script type="module" src="./components/blogs-components.js"></script>
     <script type="module" src="./components/projects-component.js"></script>
     <script src="./js/script.js"></script>
 </body>
