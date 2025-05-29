@@ -144,6 +144,10 @@ class ProjectsComponent extends HTMLElement {
         </div>
       </section>
     `;
+    this.shadowRoot.querySelector('.close-btn').addEventListener('click', () => {
+      this.project = null;
+      this.render();
+    });
   }
 }
 customElements.define('projects-section', ProjectsComponent);
