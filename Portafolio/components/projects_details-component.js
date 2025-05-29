@@ -65,10 +65,6 @@ class ProductDetail extends HTMLElement {
         this.shadowRoot.querySelector('.close-btn').addEventListener('click', () => {
             this.remove();
         });
-
-        this.shadowRoot.querySelector('.overlay').addEventListener('click', () => {
-            this.remove();
-        });
     }
 }
 
