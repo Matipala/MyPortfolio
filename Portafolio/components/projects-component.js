@@ -160,6 +160,7 @@ class ProjectsComponent extends HTMLElement {
         </div>
       </section>
     `;
+    this.addClickListeners();
   }
 }
 customElements.define('projects-section', ProjectsComponent);
