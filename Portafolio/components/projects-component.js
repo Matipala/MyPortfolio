@@ -74,6 +74,7 @@ class ProjectsComponent extends HTMLElement {
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           opacity: 1;
           transform: translateY(0);
+          cursor: pointer;
         }
 
         .portfolio__item:hover {
@@ -145,5 +146,4 @@ class ProjectsComponent extends HTMLElement {
     `;
   }
 }
-
 customElements.define('projects-section', ProjectsComponent);
