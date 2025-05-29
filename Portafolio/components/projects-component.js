@@ -144,6 +144,17 @@ class ProjectsComponent extends HTMLElement {
         </div>
       </section>
     `;
+    this.shadowRoot.querySelectorAll('.portfolio__item').forEach(item => {
+      item.addEventListener('click', () => {
+        const index = item.getAttribute('data-index');
+        const selectedProject = projects[index];
+        this.dispatchEvent(new CustomEvent('project-selected', {
+          detail: selectedProject,
+          bubbles: true,
+          composed: true
+        }));
+      });
+    });
   }
 }
 customElements.define('projects-section', ProjectsComponent);
