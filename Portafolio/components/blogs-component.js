@@ -57,7 +57,6 @@ class BlogsSection extends HTMLElement {
           gap: 2rem;
           flex-wrap: nowrap;
           padding-bottom: 1rem;
-          overflow-x: auto;
         }
         .blogs__item {
           flex: 0 0 350px;

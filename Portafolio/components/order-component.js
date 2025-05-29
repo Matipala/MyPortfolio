@@ -2,15 +2,21 @@ class OrderSection extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
+        this.onBlogsUpdated = this.onBlogsUpdated.bind(this);
     }
 
     connectedCallback() {
         this.render();
-        document.addEventListener('blogs-updated', () => {
-            this.render();
-        });
+        window.addEventListener("blogs-updated", this.onBlogsUpdated);
     }
 
+    disconnectedCallback() {
+        window.removeEventListener("blogs-updated", this.onBlogsUpdated);
+    }
+
+    onBlogsUpdated() {
+        this.render();
+    }
 
     getStoredBlogs() {
         const storedData = JSON.parse(localStorage.getItem("blogsData")) || {};
@@ -24,8 +30,8 @@ class OrderSection extends HTMLElement {
         if (storedData[id]) {
             storedData[id].saved = false;
             localStorage.setItem("blogsData", JSON.stringify(storedData));
+            this.render();
         }
-        this.render();
     }
 
     render() {
@@ -41,92 +47,91 @@ class OrderSection extends HTMLElement {
           background: #f9f9f9;
           border-radius: 10px;
         }
-        h2 {
-          text-align: center;
-          margin-bottom: 1.5rem;
+        .blogs-list {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1rem;
         }
         .blog-item {
           display: flex;
+          gap: 1rem;
           background: white;
-          margin-bottom: 1rem;
+          padding: 1rem;
           border-radius: 8px;
-          overflow: hidden;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+          align-items: center;
         }
         .blog-image {
-          flex: 0 0 150px;
-          height: 100px;
+          width: 100px;
+          height: 60px;
           object-fit: cover;
+          border-radius: 8px;
+          flex-shrink: 0;
         }
         .blog-content {
-          padding: 0.8rem 1rem;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
+          flex-grow: 1;
         }
         .blog-title {
-          font-size: 1.1rem;
-          margin: 0 0 0.5rem 0;
           font-weight: bold;
-          color: #222;
+          font-size: 1rem;
+          margin: 0 0 0.5rem 0;
         }
         .blog-date {
-          font-size: 0.8rem;
-          color: #666;
+          font-size: 0.9rem;
+          color: #555;
           margin-bottom: 0.5rem;
         }
         .remove-btn {
-          align-self: flex-start;
           background: #e74c3c;
           border: none;
           color: white;
-          padding: 0.4rem 0.8rem;
-          border-radius: 5px;
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
           cursor: pointer;
-          font-weight: bold;
-          transition: background-color 0.2s ease;
+          transition: background 0.3s ease;
+          font-size: 0.9rem;
+          flex-shrink: 0;
         }
         .remove-btn:hover {
           background: #c0392b;
         }
-        .empty-message {
+        .no-blogs {
           text-align: center;
+          font-size: 1.2rem;
           color: #555;
-          font-style: italic;
-          margin-top: 3rem;
+          padding: 2rem 0;
         }
       </style>
-
       <section class="order-section">
         <h2>Blogs Guardados</h2>
-
-        ${blogs.length > 0
-                ? blogs
+        ${blogs.length === 0
+                ? `<p class="no-blogs">No tienes blogs guardados.</p>`
+                : `<div class="blogs-list">
+              ${blogs
                     .map(
                         (blog) => `
-          <div class="blog-item" data-id="${blog.id}">
-            <img src="${blog.image || 'img/placeholder.png'}" alt="Blog image" class="blog-image" />
-            <div class="blog-content">
-              <div>
-                <p class="blog-date">${blog.date || ''}</p>
-                <h3 class="blog-title">${blog.title || blog.id}</h3>
-              </div>
-              <button class="remove-btn" data-id="${blog.id}">Quitar</button>
-            </div>
-          </div>
-          `
+                <article class="blog-item" data-id="${blog.id}">
+                  <img src="img/${blog.id}.jpeg" alt="Imagen del blog ${blog.id}" class="blog-image" />
+                  <div class="blog-content">
+                    <h3 class="blog-title">${blog.id}</h3>
+                    <p class="blog-date">Guardado</p>
+                    <button class="remove-btn">Eliminar</button>
+                  </div>
+                </article>
+              `
                     )
-                    .join("")
-                : `<p class="empty-message">No tienes blogs guardados.</p>`
+                    .join("")}
+            </div>`
             }
       </section>
     `;
 
         this.shadowRoot.querySelectorAll(".remove-btn").forEach((btn) => {
             btn.addEventListener("click", (e) => {
-                const id = e.target.getAttribute("data-id");
-                this.removeBlog(id);
+                const blogId = e.target.closest(".blog-item").dataset.id;
+                this.removeBlog(blogId);
+                window.dispatchEvent(new CustomEvent("blogs-updated"));
             });
         });
     }
