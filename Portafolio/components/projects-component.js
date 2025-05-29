@@ -21,7 +21,20 @@ class ProjectsComponent extends HTMLElement {
                 image: "img/EstaesMorado.png",
                 link: "https://github.com/Matipala/OrderNow"
             },
-
+            {
+                title: "Detector de Basura",
+                description: "Sistema con IA que detecta cuando un auto bota basura en la calle y captura la placa para aplicar sanciones.",
+                date: "28 de abril de 2025",
+                image: "img/EstaesMorado.png",
+                link: "https://github.com/Matipala/Detector-Basura-Placas"
+            },
+            {
+                title: "Reconocimiento de Gestos",
+                description: "Aplicación web que reconoce gestos con la mano a través de la cámara para interactuar en tiempo real.",
+                date: "6 de febrero de 2025",
+                image: "img/EstaesMorado.png",
+                link: "https://github.com/Matipala/Reconocimiento_Gestos.git"
+            }
         ];
 
         localStorage.setItem('projects', JSON.stringify(mockProjects));
