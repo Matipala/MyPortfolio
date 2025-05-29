@@ -6,7 +6,11 @@ class OrderSection extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        document.addEventListener('blogs-updated', () => {
+            this.render();
+        });
     }
+
 
     getStoredBlogs() {
         const storedData = JSON.parse(localStorage.getItem("blogsData")) || {};
