@@ -1,15 +1,15 @@
 class SkillsSection extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: "open" });
-    }
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
 
-    connectedCallback() {
-        this.render();
-    }
+  connectedCallback() {
+    this.render();
+  }
 
-    render() {
-        this.shadowRoot.innerHTML = `
+  render() {
+    this.shadowRoot.innerHTML = `
       <style>
         .skills {
           padding: 80px 0;
@@ -125,7 +125,7 @@ class SkillsSection extends HTMLElement {
         </div>
       </section>
     `;
-    }
+  }
 }
 
 customElements.define("skills-section", SkillsSection);
