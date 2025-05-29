@@ -47,7 +47,9 @@ class ProjectsComponent extends HTMLElement {
     this.shadowRoot.querySelectorAll('.portfolio__item').forEach(item => {
       item.addEventListener('click', () => {
         const index = item.getAttribute('data-index');
+        // console.log('Click en proyecto índice:', index);
         const selectedProject = projects[index];
+        // console.log('Proyecto seleccionado:', selectedProject);
 
         const detail = document.createElement('product-detail');
         detail.product = selectedProject;
@@ -56,6 +58,7 @@ class ProjectsComponent extends HTMLElement {
       });
     });
   }
+
 
   render() {
     const projects = this.getProjects();
@@ -140,8 +143,8 @@ class ProjectsComponent extends HTMLElement {
       <section class="portfolio">
         <div class="portfolio__container">
           <div class="portfolio__grid">
-            ${projects.map(project => `
-              <article class="portfolio__item">
+            ${projects.map((project, index) => `
+              <article class="portfolio__item" data-index="${index}">
                 <div class="portfolio-item__image">
                   <a href="${project.link}" target="_blank" rel="noopener noreferrer">
                     <img src="${project.image}" alt="${project.title}" class="portfolio-item__img">

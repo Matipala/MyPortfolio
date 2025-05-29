@@ -157,6 +157,7 @@ class BlogsSection extends HTMLElement {
                     <button class="like-button">🤍 0</button>
                     <button class="save-button">Guardar</button>
                   </div>
+                  <div class="save-message" style="color: green; font-size: 0.9rem; margin-top: 5px; display: none;"></div>
                 </div>
               </article>
             `
@@ -240,7 +241,18 @@ class BlogsSection extends HTMLElement {
         updateSaveButton();
         storedData[blogId] = blogData;
         saveStoredData(storedData);
+
+        if (blogData.saved) {
+          saveMessage.textContent = "✅ Se guardó el blog correctamente";
+          saveMessage.style.display = "block";
+          setTimeout(() => {
+            saveMessage.style.display = "none";
+          }, 3000);
+        } else {
+          saveMessage.style.display = "none";
+        }
       });
+
 
       likeButton.addEventListener("click", () => {
         likeCommand.execute();
