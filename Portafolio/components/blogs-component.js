@@ -207,6 +207,8 @@ class BlogsSection extends HTMLElement {
       const blogId = blogElement.dataset.id;
       const likeButton = blogElement.querySelector(".like-button");
       const saveButton = blogElement.querySelector(".save-button");
+      const saveMessage = blogElement.querySelector(".save-message");
+
 
       const storedData = getStoredData();
       if (!storedData[blogId]) {
