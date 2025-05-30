@@ -1,5 +1,5 @@
 import { blogs } from '../data/blogs.js';
-import { loadFromStorage } from '../utils/storage.js';
+import { saveToStorage, loadFromStorage, removeFromStorage } from '../utils/storage.js';
 
 class SavedItems {
     static instance;
