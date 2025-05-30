@@ -1,3 +1,7 @@
+import { savedItemsInstance } from '../components/savedItems.js';
+import { ToggleFavoriteCommand } from '../commands/ToggleFavoriteCommand.js';
+
+
 class BlogsSection extends HTMLElement {
   constructor() {
     super();
@@ -163,20 +167,24 @@ class BlogsSection extends HTMLElement {
   }
 
   setupLikesAndSaves() {
+    const blogs = this.getBlogs();
+    const storedData = JSON.parse(localStorage.getItem("blogsData")) || {};
+
     this.shadowRoot.querySelectorAll(".blogs__item").forEach((blogElement) => {
       const blogId = blogElement.dataset.id;
+      const blog = blogs.find(b => b.id === blogId);
       const likeButton = blogElement.querySelector(".like-button");
       const saveButton = blogElement.querySelector(".save-button");
       const saveMessage = blogElement.querySelector(".save-message");
 
-      const storedData = JSON.parse(localStorage.getItem("blogsData")) || {};
       if (!storedData[blogId]) {
         storedData[blogId] = {
           count: 0,
           liked: false,
-          saved: false,
+          saved: savedItemsInstance.getItems().some(item => item.id === blogId),
         };
       }
+
       const blogData = storedData[blogId];
 
       const updateLikeButton = () => {
@@ -199,9 +207,13 @@ class BlogsSection extends HTMLElement {
           this.updateCallback = updateCallback;
         }
         execute() {
-          this.blogData.liked = !this.blogData.liked;
-          this.blogData.count += this.blogData.liked ? 1 : -1;
+          const toggleFavorite = new ToggleFavoriteCommand(this.blog);
+          toggleFavorite.execute();
+
+          this.blogData.saved = !this.blogData.saved;
           this.updateCallback();
+
+          this.blogElement.dispatchEvent(new CustomEvent("blogs-updated", { bubbles: true, composed: true }));
         }
       }
 
@@ -253,3 +265,5 @@ class BlogsSection extends HTMLElement {
 }
 
 customElements.define("blogs-section", BlogsSection);
+
+

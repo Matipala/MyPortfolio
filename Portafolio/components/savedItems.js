@@ -1,8 +1,13 @@
+import { blogs } from '../data/blogsData.js';
+import { saveToLocalStorage, getFromLocalStorage } from './utils/storage.js';
+
 class SavedItems {
     static instance;
     constructor() {
         if (SavedItems.instance) return SavedItems.instance;
-        this.items = getFromLocalStorage('savedItems') || [];
+
+        const saved = getFromLocalStorage('savedItems');
+        this.items = saved && saved.length > 0 ? saved : blogs;
         this.subscribers = [];
         SavedItems.instance = this;
     }
@@ -33,9 +38,11 @@ class SavedItems {
     getAll() {
         return this.items;
     }
+
+    updateAll(newItems) {
+        this.items = newItems;
+        this.update();
+    }
 }
 
 export const savedItemsInstance = new SavedItems();
-
-
-import { saveToLocalStorage, getFromLocalStorage } from './utils/storage.js';

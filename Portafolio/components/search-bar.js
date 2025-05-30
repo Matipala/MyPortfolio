@@ -1,5 +1,6 @@
 import { SearchCommand } from '../commands/SearchCommand.js';
 import { FocusSearchCommand } from '../commands/FocusSearchCommand.js';
+import { savedItemsInstance } from '../components/savedItems.js';
 
 class SearchBar extends HTMLElement {
     constructor() {
