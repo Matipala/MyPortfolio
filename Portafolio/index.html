@@ -65,16 +65,22 @@
     </section>
 
     <section class="blog" id="blog-personal">
-        <h2>Blog Personal Editable</h2>
-        <div id="blog-posts">
-            <article class="post">
-                <h3>Primera entrada</h3>
-                <p>Este es mi primer post editable.</p>
-            </article>
-        </div>
-        <button id="add-post">Agregar nueva entrada</button>
-    </section>
+        <div class="blog__container">
+            <h2 class="blog__title">Blog Personal Editable</h2>
 
+            <button id="toggle-form-btn" class="blog__toggle-btn">Crear Post</button>
+
+            <form id="blog-form" class="blog__form hidden">
+                <input type="text" id="blog-img" placeholder="URL de imagen" required>
+                <input type="date" id="blog-date" required>
+                <input type="text" id="blog-title" placeholder="Título" required>
+                <textarea id="blog-description" placeholder="Descripción" required></textarea>
+                <button type="submit">Agregar nueva entrada</button>
+            </form>
+
+            <div class="blog__posts"></div>
+        </div>
+    </section>
 
 
     <footer class="footer">
