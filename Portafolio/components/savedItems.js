@@ -1,12 +1,12 @@
-import { blogs } from '../data/blogsData.js';
-import { saveToLocalStorage, getFromLocalStorage } from './utils/storage.js';
+import { blogs } from '../data/blogs.js';
+import { loadFromStorage } from '../utils/storage.js';
 
 class SavedItems {
     static instance;
     constructor() {
         if (SavedItems.instance) return SavedItems.instance;
 
-        const saved = getFromLocalStorage('savedItems');
+        const saved = loadFromStorage('savedItems');
         this.items = saved && saved.length > 0 ? saved : blogs;
         this.subscribers = [];
         SavedItems.instance = this;

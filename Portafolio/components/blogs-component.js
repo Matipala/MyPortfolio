@@ -1,5 +1,5 @@
 import { savedItemsInstance } from '../components/savedItems.js';
-import { ToggleFavoriteCommand } from '../commands/ToggleFavoriteCommand.js';
+import { ToggleFavoriteCommand } from '../command/ToggleFavoriteCommand.js';
 
 
 class BlogsSection extends HTMLElement {
