@@ -59,28 +59,33 @@
             <div class="blogs__grid">
                 <blogs-section></blogs-section>
             </div>
+            <div class="blog__posts"></div>
         </div>
         <a href="guardados.html">Ver blogs guardados</a>
 
     </section>
 
-    <section class="blog" id="blog-personal">
-        <div class="blog__container">
-            <h2 class="blog__title">Blog Personal Editable</h2>
+    <button class="blog__toggle-btn" id="togglePostForm">Crear Post</button>
 
-            <button id="toggle-form-btn" class="blog__toggle-btn">Crear Post</button>
-
-            <form id="blog-form" class="blog__form hidden">
-                <input type="text" id="blog-img" placeholder="URL de imagen" required>
-                <input type="date" id="blog-date" required>
-                <input type="text" id="blog-title" placeholder="Título" required>
-                <textarea id="blog-description" placeholder="Descripción" required></textarea>
-                <button type="submit">Agregar nueva entrada</button>
-            </form>
-
-            <div class="blog__posts"></div>
+    <form id="blogForm" class="blog__form hidden">
+        <div>
+            <label for="postImage">URL de la imagen</label>
+            <input type="text" id="postImage" placeholder="https://ejemplo.com/imagen.jpg" required>
         </div>
-    </section>
+        <div>
+            <label for="postTitle">Título</label>
+            <input type="text" id="postTitle" placeholder="Escribe el título del post" required>
+        </div>
+        <div>
+            <label for="postDate">Fecha</label>
+            <input type="date" id="postDate" required>
+        </div>
+        <div>
+            <label for="postDescription">Descripción</label>
+            <textarea id="postDescription" placeholder="Escribe una breve descripción..." required></textarea>
+        </div>
+        <button type="submit">Agregar Post</button>
+    </form>
 
 
     <footer class="footer">
