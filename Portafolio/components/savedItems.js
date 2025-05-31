@@ -31,7 +31,7 @@ class SavedItems {
     }
 
     update() {
-        saveToLocalStorage('savedItems', this.items);
+        saveToStorage('savedItems', this.items);
         this.notify();
     }
 

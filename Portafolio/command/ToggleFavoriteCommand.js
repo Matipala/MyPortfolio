@@ -1,18 +1,14 @@
 import { savedItemsInstance } from '../components/savedItems.js';
 
 export class ToggleFavoriteCommand {
-    constructor(blog) {
-        this.blog = blog;
+    constructor(blogData, updateCallback) {
+        this.blogData = blogData;
+        this.updateCallback = updateCallback;
     }
 
     execute() {
-        const currentItems = savedItemsInstance.getAll();
-        const exists = currentItems.some(item => item.id === this.blog.id);
-
-        if (exists) {
-            savedItemsInstance.remove(this.blog.id);
-        } else {
-            savedItemsInstance.add(this.blog);
-        }
+        this.blogData.liked = !this.blogData.liked;
+        this.blogData.count += this.blogData.liked ? 1 : -1;
+        this.updateCallback();
     }
 }

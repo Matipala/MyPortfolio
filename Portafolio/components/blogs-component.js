@@ -206,30 +206,40 @@ class BlogsSection extends HTMLElement {
           this.blogData = blogData;
           this.updateCallback = updateCallback;
         }
+
         execute() {
-          const toggleFavorite = new ToggleFavoriteCommand(this.blog);
+          const toggleFavorite = new ToggleFavoriteCommand(this.blogData, this.updateCallback);
           toggleFavorite.execute();
-
-          this.blogData.saved = !this.blogData.saved;
-          this.updateCallback();
-
-          this.blogElement.dispatchEvent(new CustomEvent("blogs-updated", { bubbles: true, composed: true }));
         }
       }
 
+
       class ToggleSaveCommand extends Command {
-        constructor(blogData, blogElement, updateCallback) {
+        constructor(blogData, blogElement, updateCallback, blog) {
           super();
           this.blogData = blogData;
           this.blogElement = blogElement;
           this.updateCallback = updateCallback;
+          this.blog = blog;
         }
+
         execute() {
           this.blogData.saved = !this.blogData.saved;
+
+          if (this.blogData.saved) {
+            savedItemsInstance.add(this.blog);
+          } else {
+            savedItemsInstance.remove(this.blog.id);
+          }
+
           this.updateCallback();
-          this.blogElement.dispatchEvent(new CustomEvent("blogs-updated", { bubbles: true, composed: true }));
+
+          this.blogElement.dispatchEvent(
+            new CustomEvent("blogs-updated", { bubbles: true, composed: true })
+          );
         }
       }
+
 
       updateLikeButton();
       updateSaveButton();
@@ -254,7 +264,8 @@ class BlogsSection extends HTMLElement {
         } else {
           saveMessage.style.display = "none";
         }
-      });
+      }, blog);
+
 
       likeButton.addEventListener("click", () => likeCommand.execute());
       saveButton.addEventListener("click", () => saveCommand.execute());
