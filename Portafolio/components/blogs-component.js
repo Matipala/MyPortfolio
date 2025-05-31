@@ -164,10 +164,116 @@ class BlogsSection extends HTMLElement {
         </div>
       </section>
     `;
-    this.setupAppStateFavorites();
+  }
+
+  setupLikesAndSaves() {
+    const blogs = this.getBlogs();
+    const storedData = JSON.parse(localStorage.getItem("blogsData")) || {};
+
+    this.shadowRoot.querySelectorAll(".blogs__item").forEach((blogElement) => {
+      const blogId = blogElement.dataset.id;
+      const blog = blogs.find(b => b.id === blogId);
+      const likeButton = blogElement.querySelector(".like-button");
+      const saveButton = blogElement.querySelector(".save-button");
+      const saveMessage = blogElement.querySelector(".save-message");
+
+      if (!storedData[blogId]) {
+        storedData[blogId] = {
+          count: 0,
+          liked: false,
+          saved: savedItemsInstance.getItems().some(item => item.id === blogId),
+        };
+      }
+
+      const blogData = storedData[blogId];
+
+      const updateLikeButton = () => {
+        likeButton.textContent = `${blogData.liked ? "❤️" : "🤍"} ${blogData.count}`;
+        likeButton.classList.toggle("liked", blogData.liked);
+      };
+
+      const updateSaveButton = () => {
+        saveButton.textContent = blogData.saved ? "✅ Guardado" : "Guardar";
+        saveButton.classList.toggle("saved", blogData.saved);
+      };
+
+      class Command {
+        execute() { }
+      }
+      class ToggleLikeCommand extends Command {
+        constructor(blogData, updateCallback) {
+          super();
+          this.blogData = blogData;
+          this.updateCallback = updateCallback;
+        }
+
+        execute() {
+          const toggleFavorite = new ToggleFavoriteCommand(this.blogData, this.updateCallback);
+          toggleFavorite.execute();
+        }
+      }
+
+
+      class ToggleSaveCommand extends Command {
+        constructor(blogData, blogElement, updateCallback, blog) {
+          super();
+          this.blogData = blogData;
+          this.blogElement = blogElement;
+          this.updateCallback = updateCallback;
+          this.blog = blog;
+        }
+
+        execute() {
+          this.blogData.saved = !this.blogData.saved;
+
+          if (this.blogData.saved) {
+            savedItemsInstance.add(this.blog);
+          } else {
+            savedItemsInstance.remove(this.blog.id);
+          }
+
+          this.updateCallback();
+
+          this.blogElement.dispatchEvent(
+            new CustomEvent("blogs-updated", { bubbles: true, composed: true })
+          );
+        }
+      }
+
+
+      updateLikeButton();
+      updateSaveButton();
+
+      const likeCommand = new ToggleLikeCommand(blogData, () => {
+        updateLikeButton();
+        storedData[blogId] = blogData;
+        localStorage.setItem("blogsData", JSON.stringify(storedData));
+      });
+
+      const saveCommand = new ToggleSaveCommand(blogData, blogElement, () => {
+        updateSaveButton();
+        storedData[blogId] = blogData;
+        localStorage.setItem("blogsData", JSON.stringify(storedData));
+
+        if (blogData.saved) {
+          saveMessage.textContent = "✅ Se guardó el blog correctamente";
+          saveMessage.style.display = "block";
+          setTimeout(() => {
+            saveMessage.style.display = "none";
+          }, 3000);
+        } else {
+          saveMessage.style.display = "none";
+        }
+      }, blog);
+
+
+      likeButton.addEventListener("click", () => likeCommand.execute());
+      saveButton.addEventListener("click", () => saveCommand.execute());
+    });
+
+    this.dispatchEvent(new CustomEvent("blogs-updated", { bubbles: true, composed: true }));
   }
 }
-
 
 customElements.define("blogs-section", BlogsSection);
 
