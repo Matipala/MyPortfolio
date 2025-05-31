@@ -1,6 +1,8 @@
-import { SearchCommand } from '../commands/SearchCommand.js';
-import { FocusSearchCommand } from '../commands/FocusSearchCommand.js';
+import { SearchCommand } from '../command/searchCommand.js';
+import { FocusSearchCommand } from '../command/focusSearchCommand.js';
 import { savedItemsInstance } from '../components/savedItems.js';
+import { ToggleFavoriteCommand } from '../command/ToggleFavoriteCommand.js';
+
 
 class SearchBar extends HTMLElement {
     constructor() {
@@ -42,19 +44,32 @@ class SearchBar extends HTMLElement {
         });
 
         document.addEventListener('keydown', e => {
-            if (e.ctrlKey && e.key === 'k') {
+            if (e.ctrlKey && e.key.toLowerCase() === 'k') {
                 e.preventDefault();
                 const focusCmd = new FocusSearchCommand(input);
                 focusCmd.execute();
             }
         });
 
+
         document.addEventListener('keydown', e => {
-            if (e.ctrlKey && e.key === 'f') {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
                 e.preventDefault();
                 const id = new URLSearchParams(window.location.search).get('id');
                 if (id) {
-                    console.log(`(Simulado) Alternar favorito para ID: ${id}`);
+                    const items = savedItemsInstance.getAll();
+                    const blogItem = items.find(item => item.id === id);
+                    if (blogItem) {
+                        const updateCallback = () => {
+                            savedItemsInstance.updateAll(items);
+                            console.log(`Favorito alternado para ID: ${id}, estado liked: ${blogItem.liked}`);
+                        };
+
+                        const toggleCmd = new ToggleFavoriteCommand(blogItem, updateCallback);
+                        toggleCmd.execute();
+                    } else {
+                        console.log(`No se encontró el item con ID: ${id}`);
+                    }
                 }
             }
         });
